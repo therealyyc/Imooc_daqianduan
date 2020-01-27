@@ -2,11 +2,7 @@
 
 本次作业小结：给自己打分60（刚及格，仅仅实现功能）
 
-<<<<<<< HEAD
-![](https://github.com/therealyyc/Imooc_daqianduan/blob/master/GIF.gif)
-=======
-![](https://github.com/therealyyc/Imooc_daqianduan/edit/master/chapter2/GIF.gif)
->>>>>>> a648c8d459d8b3443a6279a88646d37c4c427737
+![img](https://github.com/therealyyc/Imooc_daqianduan/blob/master/GIF.gif)
 
 小结：
 
