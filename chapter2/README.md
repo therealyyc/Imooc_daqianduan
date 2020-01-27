@@ -2,7 +2,7 @@
 
 本次作业小结：给自己打分60（刚及格，仅仅实现功能）
 
-![](.\GIF.gif)
+![](https://github.com/therealyyc/Imooc_daqianduan/edit/master/chapter2/GIF.gif)
 
 小结：
 
