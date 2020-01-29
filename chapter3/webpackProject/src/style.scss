@@ -1,0 +1,23 @@
+@font-face {
+  font-family: MyFont;
+  src: url("./Sauce\ Code\ Powerline\ Light.otf");
+}
+
+$total-font: MyFont;
+
+body {
+  .container {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    background: url("./happy.jpg");
+    background-position: center center;
+    /* background-repeat: repeat-x,no-repeat; */
+    background-size: 100%;
+  }
+  .font-container {
+    text-align: center;
+    font-family: $total-font;
+  }
+}
