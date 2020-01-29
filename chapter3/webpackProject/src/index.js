@@ -12,3 +12,6 @@ console.log('documem', document.body)
 crt.appendChild(happyImg)
 document.body.appendChild(crt)
 
+
+console.log('22!!!')
+

@@ -1,4 +1,6 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack')
 
 
 console.log(path.join(__dirname, 'dist2'))
@@ -6,9 +8,15 @@ console.log(path.resolve())
 
 const config = {
   entry: './src/index.js',
+
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, './dist2')
+    path: path.join(__dirname, './dist'),
+    publicPath: '/assets/'
+  },
+  devServer: {
+    // contentBase: './dist',
+    hot: true
   },
   module: {
     rules: [
@@ -27,16 +35,10 @@ const config = {
             loader: 'url-loader',
             options: {
               limit: 8192,
-              name: 'images/[name].[ext]',
+              // name: 'images/[name].[ext]',
               esModule: false
             }
           }
-        ]
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader'
         ]
       },
       {
@@ -46,7 +48,15 @@ const config = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    // new webpack.NamedModulesPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index2.html',
+      template: './src/index.html'
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
 
 module.exports = config
