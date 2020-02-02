@@ -7,12 +7,11 @@ console.log(path.join(__dirname, 'dist2'))
 console.log(path.resolve())
 
 const config = {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
 
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, './dist'),
-    publicPath: '/assets/'
   },
   devServer: {
     // contentBase: './dist',
@@ -40,6 +39,14 @@ const config = {
             }
           }
         ]
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.jsx$/,
+        loader: 'babel-loader'
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
