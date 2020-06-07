@@ -1,45 +1,58 @@
 const Koa = require('koa')
+
+
+// import Koa from 'koa'
 const app = new Koa()
-const views = require('koa-views')
-const json = require('koa-json')
-const onerror = require('koa-onerror')
-const bodyparser = require('koa-bodyparser')
-const logger = require('koa-logger')
+// const views = require('koa-views')
+import json from 'koa-json'
+import onerror from 'koa-onerror'
+import bodyparser from 'koa-bodyparser'
+import logger from 'koa-logger'
+// const json = require('koa-json')
+// const onerror = require('koa-onerror')
+// const bodyparser = require('koa-bodyparser')
+// const logger = require('koa-logger')
 
 
-const apis = require('./routes/apis')
+// const apis = require('./routes/apis')
+import apis from './routes/apis'
 
 // error handler
 onerror(app)
+try {
+  // middlewares
+  app.use(bodyparser({
+    enableTypes: ['json', 'form', 'text']
+  }))
+  app.use(json())
+  app.use(logger())
+  // app.use(require('koa-static')(__dirname + '/public'))
 
-// middlewares
-app.use(bodyparser({
-  enableTypes: ['json', 'form', 'text']
-}))
-app.use(json())
-app.use(logger())
-// app.use(require('koa-static')(__dirname + '/public'))
+  // app.use(views(__dirname + '/views', {
+  //   extension: 'pug'
+  // }))
 
-// app.use(views(__dirname + '/views', {
-//   extension: 'pug'
-// }))
+  // logger
+  app.use(async (ctx, next) => {
+    const start = new Date()
+    await next()
+    const ms = new Date() - start
+    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+  })
 
-// logger
-app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-})
-
-// routes
+  // routes
 
 
-app.use(apis.routes(), apis.allowedMethods())
+  app.use(apis.routes(), apis.allowedMethods())
 
-// error-handling
-app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
-});
+  // error-handling
+  app.on('error', (err, ctx) => {
+    console.error('server error', err, ctx)
+  });
 
-module.exports = app
+
+
+  module.exports = app;
+} catch (e) {
+  console.log('e', e)
+}

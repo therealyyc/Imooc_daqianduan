@@ -5,6 +5,7 @@ const {
 router.prefix('/api')
 
 router.get('/string', async (ctx, next) => {
+  console.log('bbbb')
   ctx.body = 'koa2 string'
 })
 
@@ -22,6 +23,13 @@ router.post('/user', async (ctx, next) => {
   let resdata = { ...ctx.request.body }
   ctx.body = JSON.stringify(new ResModel(200, '上传成功', resdata), null, 2)
 
+})
+
+router.get('/a', async (ctx, next) => {
+  console.log('aaaa')
+  let str = "hello aaa"
+  ctx.body = JSON.stringify(str)
+  return;
 })
 
 
